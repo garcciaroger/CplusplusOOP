@@ -8,7 +8,6 @@ class Applicant{
         string Degree;
         int YearsOfExpiremce;
         int Age;
-
     public: 
         //Name 
         void setName(string name){
@@ -55,13 +54,12 @@ class Applicant{
             }
 };
 
-class OfferLetter{
+class TotalCompensation{
     private:
         int BaseSalary;
         int SignOnBonus;
         int Stocks;
         int Incentives;
-
     public:
         //Base Salary
         void setSalary(int salary){
@@ -92,7 +90,7 @@ class OfferLetter{
             return Incentives;
         }
             //Constructor
-            OfferLetter(int salary, int bonus, int stocks, int incentives){
+            TotalCompensation(int salary, int bonus, int stocks, int incentives){
                 BaseSalary = salary;
                 SignOnBonus = bonus;
                 Stocks = stocks;
@@ -100,32 +98,48 @@ class OfferLetter{
             }
 };
 
-class SoftwareEngineer: public Applicant, public OfferLetter{
-    public:
-        string ProgrammingLanguage;
+class SoftwareEngineer{
+    private:
+        string ProgrammingLanguages;
         string JobDescription;
-        int BaseSalary;
-        int SignOnBonus;
-        int Stocks;
-
-        SoftwareEngineer(string name, string company, int id, int age, string language, string jd, int salary,
-        int bonus, int stocks)
-            :Applicant(name, company, id, age)
-        
-        {
-            ProgrammingLanguage = language;
+    public:
+        void setProLang(string language){
+            ProgrammingLanguages = language;
+        }
+        string getProLang(){
+            return ProgrammingLanguages;
+        }
+        void setJob(string jd){
             JobDescription = jd;
-            BaseSalary = salary;
-            SignOnBonus = bonus;
-            Stocks = stocks;
         }
+        string getJob(){
+            return JobDescription;
+        }
+            SoftwareEngineer(string language, string jd){
+                ProgrammingLanguages = language;
+                JobDescription = jd;
+            }
+        
+            void DisplaySoftwareEngineerRole(){
+                cout << "---------Job Description--------" << endl;
+                cout << "--------------------------------" << endl;
+                cout << "Role: Software Engineer" << endl;
+                cout << "Job Description: " << JobDescription << endl;
+                cout << "Programming Languages Required: " << ProgrammingLanguages << endl;
+          
+            }
+};
 
-        void offerLetter(){
-            cout << "Congratulations on being selected for our Software Enginner role at Boeing Inc. " << endl;
-            cout << "Here is our Offer letter to you. Please respond within 2 to 3 buisness days " << endl;
-            cout << "Job Description: " << JobDescription << endl;
-            cout << "Base Salary: $" << BaseSalary << endl;
-            cout << "Sign-On Bonus: $" << SignOnBonus << endl;
-            cout << "Stocks: $" << Stocks << endl;
-        }
+class OfferLetter: public Applicant, public TotalCompensation, public SoftwareEngineer{
+    public:
+        OfferLetter(string name, string jobtitle, string degree, int expirence, int age, int salary,
+                     int bonus, int stocks, int incentives, string language, string jd)
+                     
+        :Applicant(name, jobtitle, degree, age),
+         TotalCompensation(salary, bonus, stocks, incentives),
+         SoftwareEngineer(language, jd)
+
+
+        
+
 };
