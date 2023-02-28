@@ -1,0 +1,6 @@
+Andrus          574      148
+Beltre            543     151
+Choo               531     146
+Fielder           592     182
+Odor              405      108
+         
